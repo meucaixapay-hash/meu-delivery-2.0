@@ -3,6 +3,7 @@
 namespace Tucuma\MeuDelivery\Admin;
 
 use Tucuma\MeuDelivery\Database\Schema;
+use Tucuma\MeuDelivery\Core\Plugin;
 
 if (!defined('ABSPATH')) {
 	exit;
@@ -35,17 +36,17 @@ final class Admin {
 				<strong><?php echo esc_html__('Banco de dados:', 'meu-delivery-2'); ?></strong>
 				<?php echo esc_html($ready ? __('Estrutura inicial criada', 'meu-delivery-2') : __('Aguardando migração', 'meu-delivery-2')); ?>
 			</p>
-			<p><code>[meu_delivery_app]</code> — <?php echo esc_html__('esqueleto do painel SaaS, acessível a usuários com a permissão md2_access_panel.', 'meu-delivery-2'); ?></p>
+			<p><code>[meu_delivery_app]</code> — <?php echo esc_html__('esqueleto do painel SaaS, acessível a usuários com a permissão md2_access_panel. Se outro plugin já registrar esse nome, use um dos shortcodes alternativos listados no readme do plugin.', 'meu-delivery-2'); ?></p>
 		</div>
 		<?php
 	}
 
 	public static function migration_notice() {
-		if (!current_user_can('manage_options') || (string) get_option('md2_db_version', '') === MD2_DB_VERSION) {
+		if (!current_user_can('manage_options') || ((string) get_option('md2_db_version', '') === Plugin::DB_VERSION && Schema::verify())) {
 			return;
 		}
 
-		$message = __('A estrutura inicial do banco do Meu Delivery 2.0 ainda não foi confirmada. A migração será tentada novamente; consulte o log PHP se o aviso persistir.', 'meu-delivery-2');
+		$message = __('A estrutura do banco do Meu Delivery 2.0 ainda não foi confirmada. A migração será tentada novamente em uma próxima solicitação; consulte o log PHP se o aviso persistir.', 'meu-delivery-2');
 		echo '<div class="notice notice-warning"><p>' . esc_html($message) . '</p></div>';
 	}
 }

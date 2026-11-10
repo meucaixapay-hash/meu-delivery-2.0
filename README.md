@@ -27,4 +27,8 @@ O script valida a versão do cabeçalho e do código, e confirma que o ZIP cont�
 - `setup/phase1-version-control`: organização do código da Fase 1 e do processo de empacotamento.
 - Próximas mudanças devem usar branches próprias, sem trabalhar diretamente em `main`.
 
+## Estabilização técnica — Fase 1.1
+
+O trabalho de estabilização está isolado na branch `fix/phase-1.1-stabilization`. O shortcode legado `[meu_delivery_app]` é preservado; se outro plugin já o registrou, o Meu Delivery 2.0 seleciona o primeiro nome alternativo livre documentado em `plugin/readme.txt`. O endpoint REST principal usa `meu-delivery-2/v1`; a rota anterior `meu-delivery/v1/setup/status` também é mantida quando ainda não está registrada por outro plugin.
+
 O Meu Delivery 0.7.x é apenas referência histórica e não deve ser copiado para `plugin/`.

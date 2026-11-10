@@ -15,11 +15,13 @@ if (-not (Test-Path -LiteralPath $mainPluginFile -PathType Leaf)) {
 }
 
 $mainSource = Get-Content -LiteralPath $mainPluginFile -Raw
+$coreFile = Join-Path $sourceDirectory 'includes/Core/Plugin.php'
+$coreSource = Get-Content -LiteralPath $coreFile -Raw
 $headerVersion = [regex]::Match($mainSource, '(?m)^\s*\* Version:\s*([^\s]+)').Groups[1].Value
-$constantVersion = [regex]::Match($mainSource, "define\('MD2_VERSION',\s*'([^']+)'\)").Groups[1].Value
+$constantVersion = [regex]::Match($coreSource, "const VERSION = '([^']+)'\;").Groups[1].Value
 
 if (-not $headerVersion -or $headerVersion -ne $constantVersion) {
-	throw 'A versão do cabeçalho do plugin não corresponde à constante MD2_VERSION.'
+	throw 'A versão do cabeçalho do plugin não corresponde à constante VERSION do núcleo.'
 }
 
 if (-not (Test-Path -LiteralPath $readmeFile -PathType Leaf)) {

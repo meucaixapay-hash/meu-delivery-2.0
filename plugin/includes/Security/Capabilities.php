@@ -22,8 +22,8 @@ final class Capabilities {
 	}
 
 	public static function ensure() {
-		if ((string) get_option('md2_capabilities_version', '') === '1') {
-			return;
+		if ((string) get_option('md2_capabilities_version', '') === '1' && self::verify()) {
+			return true;
 		}
 
 		$capabilities = self::all();
@@ -35,6 +35,7 @@ final class Capabilities {
 				__('Gerente Meu Delivery', 'meu-delivery-2'),
 				array('read' => true)
 			);
+			$role = $role ? get_role(self::ROLE) : false;
 		}
 
 		if ($role) {
@@ -50,6 +51,26 @@ final class Capabilities {
 			}
 		}
 
+		if (!self::verify()) {
+			delete_option('md2_capabilities_version');
+			return false;
+		}
+
 		update_option('md2_capabilities_version', '1', false);
+		return true;
+	}
+
+	private static function verify() {
+		$role = get_role(self::ROLE);
+		$administrator = get_role('administrator');
+		if (!$role || !$administrator) {
+			return false;
+		}
+		foreach (self::all() as $capability) {
+			if (!$role->has_cap($capability) || !$administrator->has_cap($capability)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

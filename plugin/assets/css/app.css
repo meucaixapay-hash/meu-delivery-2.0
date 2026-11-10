@@ -44,6 +44,8 @@
 .md2-breadcrumb strong { color: var(--md2-brown); font-weight: 700; }
 .md2-version-chip { padding: 7px 9px; border: 1px solid #f0e4d0; border-radius: 7px; color: #87622f; background: #fff8ec; font-size: 9px; font-weight: 800; letter-spacing: .08em; }
 .md2-menu-toggle { display: none; }
+.md2-menu-close { display: none; }
+.md2-app :focus-visible { outline: 3px solid #1769aa; outline-offset: 3px; }
 .md2-content { width: min(100%, 1170px); margin: 0 auto; padding: 32px 34px 45px; }
 .md2-page-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 23px; }
 .md2-eyebrow, .md2-hero-kicker { color: #bd7413; font-size: 9px; font-weight: 850; letter-spacing: .16em; }
@@ -105,7 +107,11 @@
 @media (max-width: 720px) {
 	.md2-app { position: relative; min-height: 690px; border-radius: 12px; }
 	.md2-sidebar { position: absolute; inset: 0 auto 0 0; width: min(82vw, 290px); min-height: 100%; transform: translateX(-105%); transition: transform .22s ease; box-shadow: 18px 0 45px rgba(20,13,6,.18); }
+	.md2-menu-close { display: flex; min-height: 36px; align-items: center; justify-content: space-between; margin: -12px 0 12px; padding: 0 8px; border: 1px solid rgba(255,255,255,.28); border-radius: 8px; color: #fff; background: transparent; cursor: pointer; font-size: 12px; }
+	.md2-menu-close span { font-size: 20px; line-height: 1; }
 	.md2-menu-open .md2-sidebar { transform: translateX(0); }
+	.md2-sidebar[aria-hidden="true"] { visibility: hidden; transition: transform .22s ease, visibility 0s linear .22s; }
+	.md2-menu-open .md2-sidebar[aria-hidden="false"] { visibility: visible; transition: transform .22s ease; }
 	.md2-backdrop:not([hidden]) { position: absolute; z-index: 2; inset: 0; display: block; width: 100%; border: 0; background: rgba(27,20,13,.48); }
 	.md2-topbar { height: 55px; justify-content: flex-start; padding: 0 15px; }
 	.md2-menu-toggle { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border: 1px solid var(--md2-line); border-radius: 9px; color: var(--md2-brown); background: #fff; cursor: pointer; }

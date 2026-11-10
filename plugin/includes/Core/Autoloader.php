@@ -21,7 +21,7 @@ final class Autoloader {
 		}
 
 		$relative_class = substr($class_name, $prefix_length);
-		$file = MD2_PLUGIN_DIR . 'includes/' . str_replace('\\', '/', $relative_class) . '.php';
+		$file = dirname(__DIR__, 2) . '/includes/' . str_replace('\\', '/', $relative_class) . '.php';
 
 		if (is_readable($file)) {
 			require_once $file;

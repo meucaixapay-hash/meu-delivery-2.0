@@ -14,13 +14,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define('MD2_VERSION', '2.0.0-alpha.1');
-define('MD2_DB_VERSION', '1');
-define('MD2_PLUGIN_FILE', __FILE__);
-define('MD2_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('MD2_PLUGIN_URL', plugin_dir_url(__FILE__));
-
-require_once MD2_PLUGIN_DIR . 'includes/Core/Autoloader.php';
+require_once __DIR__ . '/includes/Core/Autoloader.php';
 \Tucuma\MeuDelivery\Core\Autoloader::register();
 
 register_activation_hook(

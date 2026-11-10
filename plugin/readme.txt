@@ -18,7 +18,7 @@ Base modular do Meu Delivery 2.0 para WordPress. Esta versão alpha contém a fu
 * Nenhum site foi instalado ou atualizado por esta entrega.
 
 == Shortcode ==
-Use [meu_delivery_app] em uma página privada. O painel exige um usuário WordPress com a capacidade md2_access_panel.
+Use [meu_delivery_app] em uma página privada. Se outro plugin já registrar esse nome, o Meu Delivery 2.0 seleciona um nome alternativo livre: [md2_meu_delivery_app], [meu_delivery_2_app] ou [md2_meu_delivery_2_app]. O painel exige um usuário WordPress com a capacidade md2_access_panel.
 
 == Estado da versão ==
 Esta é uma versão de desenvolvimento para revisão da fundação. Catálogo, pedidos, checkout, autenticação própria do restaurante, Salão e relatórios ainda serão desenvolvidos em fases posteriores.
