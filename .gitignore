@@ -1,0 +1,20 @@
+# Generated install packages
+/dist/
+
+# Local tooling and dependencies
+/.vscode/
+/.idea/
+/vendor/
+/node_modules/
+/.phpunit.cache/
+
+# Local WordPress configuration and secrets
+/.env
+/.env.*
+/wp-config.php
+*.log
+
+# Operating system files
+Thumbs.db
+Desktop.ini
+.DS_Store
